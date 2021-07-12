@@ -1,12 +1,13 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require("body-parser")
 const spotifyWebApi = require('spotify-web-api-node')
 const lyricsFinder = require('lyrics-finder')
 
-const redirectUri = 'http://localhost:3000'
-const clientId = '6b47ef29af744b69b9a16041b4c224aa'
-const clientSecret = '62a8c83e8414424a821bd7ca513c7503'
+const redirectUri = process.env.REDIRECT_URI
+const clientId = process.env.CLIENT_ID
+const clientSecret = process.env.CLIENT_SECRET
 
 const port = 3001;
 
