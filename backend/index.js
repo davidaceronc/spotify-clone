@@ -9,8 +9,6 @@ const redirectUri = process.env.REDIRECT_URI
 const clientId = process.env.CLIENT_ID
 const clientSecret = process.env.CLIENT_SECRET
 
-const port = 3001;
-
 const app = express()
 
 app.use(cors())
@@ -96,4 +94,4 @@ app.post('/lyrics', async ( req, res ) => {
 	}
 })
 
-app.listen(port)
+module.exports = app;

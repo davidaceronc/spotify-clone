@@ -4,17 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon index.js",
-    "start": "node index.js"
+    "devStart": "nodemon local.js",
+    "start": "node local.js",
+    "deploy": "serverless deploy"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-serverless-express": "^3.4.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "lyrics-finder": "^21.7.0",
+    "serverless": "^2.51.2",
     "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
