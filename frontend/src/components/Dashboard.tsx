@@ -11,9 +11,11 @@ export default function Dashboard({code}: { code: string }) {
     const [search, setSearch] = useState("")
     const [songs, setSongs] = useState([])
     const [currentSong, setCurrentSong] = useState<any | undefined>(undefined)
+    const [lyrics, setLyrics] = useState("")
 
     function playSong( song: any ) {
         setCurrentSong(song)
+        setLyrics("")
     }
 
     useEffect( () => {
@@ -27,6 +29,17 @@ export default function Dashboard({code}: { code: string }) {
         }).catch(() => {
         })
     }, [search]);
+
+    useEffect( () => {
+        if (!currentSong) return
+        axios.post(`${SERVER_URL}/lyrics`, {
+            artists: currentSong.artists,
+            song: currentSong.name
+        }).then( res => {
+            setLyrics(res.data.lyrics || "Lyrics not found")
+        }).catch(() => {
+        })
+    }, [currentSong]);
 
     return (
         <Container
@@ -44,6 +57,11 @@ export default function Dashboard({code}: { code: string }) {
                     return <Song song={song} playSong={playSong} key={song.id} />
                 })}
             </div>
+            { lyrics && (
+                <div className="text-center" style={{whiteSpace: "pre", maxHeight: "40%", overflowY: "auto"}}>
+                    {lyrics}
+                </div>
+            )}
             <div>
                 <Player accessToken={accessToken || ''} songUrl={currentSong?.url} />
             </div>

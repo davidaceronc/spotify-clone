@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require("body-parser")
 const spotifyWebApi = require('spotify-web-api-node')
+const lyricsFinder = require('lyrics-finder')
 
 const redirectUri = 'http://localhost:3000'
 const clientId = '6b47ef29af744b69b9a16041b4c224aa'
@@ -13,6 +14,7 @@ const app = express()
 
 app.use(cors())
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.post('/login', ( req, res ) => {
 	const { code } = req.body
@@ -78,6 +80,19 @@ app.post('/search', ( req, res ) => {
 	}).catch(() => {
 		res.sendStatus(400)
 	})
+})
+
+app.post('/lyrics', async ( req, res ) => {
+	const { artists, song } = req.body
+	for ( const artist of Object.values(artists) ) {
+		const lyrics = ( await lyricsFinder(artist, song) )
+		if ( lyrics ) {
+			res.json({
+				lyrics
+			})
+			break
+		}
+	}
 })
 
 app.listen(port)
