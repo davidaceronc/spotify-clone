@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from "react-bootstrap"
 
-const CLIENT_ID = '6b47ef29af744b69b9a16041b4c224aa'
-const REDIRECT_URL = `http://localhost:3000`
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
+const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL
 const AUTH_URL = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URL}&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state`
 
 export default function Login() {

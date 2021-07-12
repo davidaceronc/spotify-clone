@@ -4,7 +4,7 @@ import Song from "./Song";
 import Player from "./Player";
 import UserAuth from "../hooks/UserAuth";
 import axios from "axios";
-const SERVER_URL = `http://localhost:3001`
+const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 export default function Dashboard({code}: { code: string }) {
     const accessToken = UserAuth(code)

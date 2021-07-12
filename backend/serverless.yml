@@ -12,5 +12,4 @@ functions:
   api:
     handler: lambda.universal
     events:
-      - http: ANY {proxy+}
       - http: ANY /
