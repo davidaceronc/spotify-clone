@@ -20,5 +20,22 @@ export default function UserAuth(code:string) {
             window.location.href = '/'
         })
     }, [code]);
+
+    useEffect(() => {
+        if ( !refreshToken || !expiresIn ) return
+        // @ts-ignore
+        const timer = ( expiresIn - 60 ) * 1000
+        const interval = setInterval(() => {
+            axios.post(`${SERVER_URL}/refresh`, {
+                refreshToken
+            }).then( res=> {
+                setAccessToken(res.data.accessToken)
+                setExpiresIn(res.data.expiresIn)
+            }).catch(() => {
+                window.location.href = '/'
+            })
+        }, timer)
+        return () => clearInterval(interval)
+    }, [refreshToken, expiresIn]);
     return accessToken
 }

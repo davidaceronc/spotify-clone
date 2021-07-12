@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from "react-bootstrap"
 import UserAuth from "../hooks/UserAuth";
 
-export default function Dashboard(code:string) {
+export default function Dashboard({code}: { code: string }) {
     const accessToken = UserAuth(code)
     return (
         <Container
