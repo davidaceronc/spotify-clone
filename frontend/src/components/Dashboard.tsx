@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Container, Form } from "react-bootstrap"
+import Song from "./Song";
 import UserAuth from "../hooks/UserAuth";
 import axios from "axios";
 const SERVER_URL = `http://localhost:3001`
@@ -8,6 +9,10 @@ export default function Dashboard({code}: { code: string }) {
     const accessToken = UserAuth(code)
     const [search, setSearch] = useState("")
     const [songs, setSongs] = useState([])
+
+    function playSong( song: any ) {
+        console.log( song )
+    }
 
     useEffect( () => {
         if (!accessToken) return
@@ -34,10 +39,7 @@ export default function Dashboard({code}: { code: string }) {
             />
             <div className="flex-grow-1 my-2" style={{overflowY: "auto"}}>
                 {songs.map( (song: any) => {
-                    return <div key={song.id}>
-                        <h1>{song.name}</h1>
-                        <p>{song.url}</p>
-                    </div>
+                    return <Song song={song} playSong={playSong} key={song.id} />
                 })}
             </div>
         </Container>
