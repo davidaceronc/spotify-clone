@@ -6,7 +6,6 @@ const spotifyWebApi = require('spotify-web-api-node')
 const lyricsFinder = require('lyrics-finder')
 
 const redirectUri = process.env.REDIRECT_URI
-console.log(redirectUri)
 const clientId = process.env.CLIENT_ID
 const clientSecret = process.env.CLIENT_SECRET
 

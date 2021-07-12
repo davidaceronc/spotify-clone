@@ -1,7 +1,8 @@
-# Getting Started with Create React App
+# Spotify Clone - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React js application that connects to Backend and to Spotify API
 
+---
 ## Available Scripts
 
 In the project directory, you can run:
