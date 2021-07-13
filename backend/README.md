@@ -48,7 +48,7 @@ After installing node, this project will need yarn too, so just run the followin
 
 ## Running the project
 
-    $ yarn devStart
+    $ yarn start
 
 ## Deploy to AWS Lambda for production
 This command requires aws cli and credentials configured. Check documentation [here.](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)

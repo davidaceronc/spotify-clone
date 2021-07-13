@@ -43,28 +43,40 @@ export default function Dashboard({code}: { code: string }) {
 
     return (
         <Container
-            className="d-flex flex-column py-2"
+            className="d-flex flex-row py-5"
             style={{ height: "100vh" }}
         >
-            <Form.Control
-                type="search"
-                placeholder="Search"
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-            />
-            <div className="flex-grow-1 my-2" style={{overflowY: "auto"}}>
-                {songs.map( (song: any) => {
-                    return <Song song={song} playSong={playSong} key={song.id} />
-                })}
-            </div>
-            { lyrics && (
-                <div className="text-center" style={{whiteSpace: "pre", maxHeight: "40%", overflowY: "auto"}}>
+            <Container
+                className="d-flex flex-column px-5"
+                style={{ height: "100%" }}
+            >
+                <Form.Control
+                    className="mb-2"
+                    type="search"
+                    placeholder="Search"
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                />
+                <div className="flex-grow-1 my-2" style={{overflowY: "auto"}}>
+                    {songs.map( (song: any) => {
+                        return <Song song={song} playSong={playSong} key={song.id} />
+                    })}
+                </div>
+            </Container>
+            <Container
+                className="d-flex flex-column px-5"
+                style={{ height: "100%" }}
+            >
+                {
+                    currentSong &&
+                    <div className="mb-2">
+                        <Player accessToken={accessToken || ''} songUrl={currentSong?.url} />
+                    </div>
+                }
+                <div className="text-center flex-grow-1 py-2" style={{whiteSpace: "pre", overflowY: "auto"}}>
                     {lyrics}
                 </div>
-            )}
-            <div>
-                <Player accessToken={accessToken || ''} songUrl={currentSong?.url} />
-            </div>
+            </Container>
         </Container>
     )
 }

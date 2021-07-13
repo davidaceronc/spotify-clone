@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon local.js",
-    "start": "node local.js",
+    "start": "REDIRECT_URI=http://localhost:3000 nodemon local.js",
     "deploy": "serverless deploy"
   },
   "author": "",
